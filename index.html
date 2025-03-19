@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Show</title>
+  <style>
+    body {
+      background-color: rgb(224, 205, 182);
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      color: white;
+      background-color: rgb(77, 40, 40);
+      text-align: center;
+      padding: 10px;
+    }
+
+    h2 {
+      margin-top: 5vh;
+      margin-bottom: 5vh;
+      text-align: center;
+    }
+
+    .book-container {
+      display: flex;
+      gap: 10vw;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 10vw;
+      align-items: center;
+    }
+
+    .book {
+      width: 250px;
+      height: 350px;
+      perspective: 1000px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .book-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+    }
+
+    .book:hover .book-inner {
+      transform: rotateY(180deg);
+    }
+
+    .book-front,
+    .book-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .book-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .book-back {
+      background-color: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #333;
+      transform: rotateY(180deg);
+    }
+
+    .book-back a {
+      text-decoration: none;
+      color: #007BFF;
+    }
+
+    .book-back a:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal Styles */
+    .details-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .details-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    /* Media Queries for responsiveness */
+    @media screen and (max-width: 1200px) {
+      .book-container {
+        padding: 0 5vw;
+      }
+
+      .book {
+        width: 220px;
+        height: 300px;
+        gap: 10vw;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .book-container {
+        padding: 0 5vw;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .book {
+        width: 200px;
+        height: 280px;
+      }
+
+      header {
+        padding: 15px;
+      }
+
+      h2 {
+        margin-top: 10vh;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .book-container {
+        padding: 0 5vw;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .book {
+        width: 180px;
+        height: 250px;
+      }
+
+      header {
+        padding: 10px;
+      }
+
+      h2 {
+        margin-top: 15vh;
+        font-size: 1.2rem;
+      }
+    }
+
+
+    /* RGB backgrond css */
+    body {
+      transition: background-color 1s ease;
+    }
+
+    h3 {
+      color: white;
+      margin-bottom: 0px;
+    }
+
+    #exploreBooks{
+      text-align: start;
+      margin-left: 3vw;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to Book Showcase</h1>
+  </header>
+  <h2 id="exploreBooks">Explore Books</h2>
+  <div class="book-container">
+    <div class="book">
+      <div class="book-inner">
+        <div class="book-front">
+          <img src="./public/images/Book2.jpg" alt="Book 1">
+        </div>
+        <div class="book-back">
+          <a href="BookShowDet1.html">Show Details</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book">
+      <div class="book-inner">
+        <div class="book-front">
+          <img src="./public/images/Book3.jpg" alt="Book 2">
+        </div>
+        <div class="book-back">
+          <a href="BookShowDet2.html">Show Details</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book">
+      <div class="book-inner">
+        <div class="book-front">
+          <img src="./public/images/Book4.jpg" alt="Book 3">
+        </div>
+        <div class="book-back">
+          <a href="BookShowDet3.html">Show Details</a>
+        </div>
+      </div>
+    </div>
+    <h4>&copy; 2025 Book Showcase | All rights reserved</h4>
+  </div>
+
+
+  <script>
+    let red = 0;
+    let green = 0;
+    let blue = 0;
+
+    function changeBackgroundColor() {
+      // Change the RGB values
+      red = (red + 5) % 256;
+      green = (green + 10) % 256;
+      blue = (blue + 15) % 256;
+
+      // Set the background color with the new RGB values
+      document.body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    }
+
+    // Change the background color every 100 milliseconds
+    setInterval(changeBackgroundColor, 100);
+  </script>
+</body>
+
+</html>
